@@ -38,6 +38,12 @@ docker build -t test-docker-app . # para la creacion de la imagen del contenedor
 docker run -p 3000:3000 test-docker-app # para correr el docker
 ```
 
+## Con docker-compose
+
+```bash
+docker-compose up --build # para construir y correr el contenedor
+```
+
 Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
 
 ## Decisiones tecnicas tomadas
