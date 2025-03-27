@@ -1,24 +1,13 @@
-FROM node:18-alpine AS base
+FROM node:18-alpine 
 
-WORKDIR /app
+WORKDIR /app 
 
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json ./ 
 
-RUN npm ci
+RUN npm install 
 
-COPY . .
+COPY . . 
 
-RUN npm run build
+EXPOSE 3000 
 
-FROM node:18-alpine AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-
-COPY --from=base /app/public ./public
-COPY --from=base /app/.next/standalone ./
-COPY --from=base /app/.next/static ./.next/static
-
-EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["npm", "run", "dev"]
